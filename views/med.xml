@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id='medicine_form' model='ir.ui.view'>
+        <field name='name'>Medicine Form</field>
+        <field name='model'>product.template</field>
+        <field name='inherit_id' ref='product.product_template_only_form_view'/>
+        <!-- <field name="mode">primary</field> -->
+        <field name="priority">3</field> 
+        <field name='arch' type='xml'>
+            <xpath expr="//form//sheet[@name='product_form']//div[hasclass('oe_title')]//label[1]" position='attributes'>
+                <attribute name='string'>Medicine Name</attribute>
+            </xpath>
+            <field name='name' position='attributes'>
+                <attribute name='placeholder'>e.g. Panadol</attribute> 
+            </field>
+            <field name ='uom_po_id' position='after'>
+                <field name='serial_number'/>
+                <field name='sku'/>
+            </field>
+            <!-- <xpath expr="//form//sheet[@name='product_form']//notebook//page[@name='general_information']//grourp[1]//group[@name='group_standard_price']//field[@name='company_id']" position='after'>
+                <field name='barcode' position='move'/>
+                <field name ='parcode_image'/>
+            </xpath> -->
+            <xpath expr="//page[@name='general_information']" position='after'>
+                <page name='medicine_info' string='Medicine Info'>
+                    <group>
+                        <group name='left' string='details'>
+                            <field name='medicine_type'/>
+                            <field name='concentration'/>
+                            <field name='components'/>
+                            <field name='used_for'/>
+                            <field name='can_sold_as_parts'/>
+                            <field name='count_of_parts' attrs="{'invisible': [('can_sold_as_parts','=',False)]}"/>
+                            <field name='is_damaged'/>
+                            <field name='reason_for_damage' attrs="{'invisible': [('is_damaged','=',False)]}"/>
+                        </group>
+                        <group name='right' string='Date'>
+                            <field name='production_date'/>
+                            <field name='expired_date'/>
+                            <field name='Medicine_description'/>
+                            <field name='notes'/>
+                            <field name='batch_no'/>
+                            <field name='is_expired'/>
+                            <field name='manufauctuer'/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id='sale.product_menu_catalog' model='ir.ui.menu'>
+        <field name ='name'>Medicines</field>
+    </record>
+
+    <record id='sale.menu_product_template_action' model='ir.ui.menu'>
+        <field name ='name'>Medicines</field>
+    </record>
+
+    <record id='sale.menu_products' model='ir.ui.menu'>
+        <field name ='name'>Medicine Variants</field>
+    </record>
+
+</odoo>

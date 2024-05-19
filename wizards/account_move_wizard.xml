@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id='account_move_wizard_form' model='ir.ui.view'>
+        <field name='name'>Invoice Report</field>
+        <field name='model'>trial.account.move.wizard</field>
+        <field name='arch' type='xml'>
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='partner_ids' widget='many2many_tags'/>
+                            <field name='invoice_type'/>
+                            <field name='start_date'/>
+                        </group>
+                        <group>
+                            <field name='payment_status'/>
+                            <field name='due_status'/>
+                            <field name='end_date'/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name='journal_ids' widget='many2many_tags'/>
+                    </group>
+                </sheet>
+                <footer>
+                    <!-- <button class='btn-primary' type='action' name='%(trial.invoice_report_pdf)d' string='Print PDF'/> -->
+                    <button class='btn-primary' type='object' name='get_multi_pdf' string='Print PDF'/>
+                    <button string='Cancel' class='btn-default' special='cancel'/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id ='account_move_wizard_action' model='ir.actions.act_window'>
+        <field name='name'>Invoice Report</field>
+        <field name='res_model'>trial.account.move.wizard</field>
+        <field name='view_mode'>form</field>
+        <field name='target'>new</field>
+    </record>
+
+
+    <record id='view_invoice_tree_inherit_for_wizard' model='ir.ui.view'>
+        <field name='name'>Invoice Tree Inherit for Invoice Report</field>
+        <field name ='model'>account.move</field>
+        <field name='inherit_id' ref='account.view_invoice_tree'/>
+        <field name='arch' type='xml'>
+            <xpath expr="//header//button[@name='action_register_payment']" position='after'>
+                <button name='%(account_move_wizard_action)d' string='Invoice Report' type='action'/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

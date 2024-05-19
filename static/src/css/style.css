@@ -1,0 +1,41 @@
+.upperpart{
+display: inline;
+width: 25%;
+/* margin: 5px; */
+
+}
+
+body {
+    background-color: lightblue;
+  }
+
+.set_position{
+
+    width: 25%;
+    padding: 5px;
+    height: 25px;
+}
+
+/* .td{
+
+    width: 25%;
+    margin: 5px;
+} */
+
+.company_title{
+display: inline;
+margin-left: 40px;
+
+}
+
+.center_Class{
+display: inline;
+width: 35%;
+
+}
+thead.th{
+    border-bottom: 2px solid rgba(196, 196, 196, 0.719);
+}
+tbody.td{
+    border-bottom: 1px solid black;
+}

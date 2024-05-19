@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- <template id="assets_backend" name="module_name assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/trial/static/src/css/style.css"/>
+        </xpath>
+    </template> -->
+
+    <template id='medicin_report'>
+        <t t-call='web.html_container'>
+            <t t-foreach='docs' t-as='o'>
+                <t t-call='web.external_layout'>
+                    <link rel="stylesheet" href="/trial/static/src/css/style.css"/>
+                    <div class='page'>
+                        <h2 style='text-align: center;'>Medicine Report</h2>
+                        <br/>
+                        <!-- <div>
+                            <div class="upperpart">Medicine name :  </div>     
+                            <div t-field='o.name' class="upperpart"/> 
+                            <div class="upperpart">Used for : </div>
+                            <div t-field='o.used_for' class="upperpart"/>                   
+                        </div>
+                        <div>
+                            <div class="upperpart">Medicine type :  </div>     
+                            <div t-field='o.medicine_type' class="upperpart"/> 
+                            <div class="upperpart">Concentration  : </div>
+                            <div t-field='o.concentration' class="upperpart"/>                   
+                        </div>
+                        <div>
+                            <div class="upperpart">Description :  </div>     
+                            <div t-field='o.Medicine_description' class="upperpart"/>                  
+                        </div>  -->
+
+                        <table style='width: 100%;border-style: none;'>
+                            <tbody>
+                                <tr>
+                                    <td class='set_position'>Medicine name :</td>
+                                    <td class='set_position'><span t-field='o.name'/></td>
+                                    <td class='set_position'>Used for : </td>
+                                    <td class='set_position'><span t-field='o.used_for'/></td>
+                                </tr>
+                                <tr>
+                                    <td class='set_position'>Medicine type :  </td>
+                                    <td class='set_position'><span t-field='o.medicine_type'/></td>
+                                    <td class='set_position'>Concentration  : </td>
+                                    <td class='set_position'><span t-field='o.concentration'/></td>
+                                </tr>
+
+                                <tr>
+                                    <td class='set_position'>Components</td>
+                                    <td class='set_position'><span t-field='o.components'/></td>
+                                    <td class='set_position'>Production date</td>
+                                    <td class='set_position'><span t-field='o.production_date'/></td>
+                                </tr>
+                                <tr>
+                                    <td class='set_position'>Manufacturer</td>
+                                    <td class='set_position'><span t-field='o.manufauctuer'/></td>
+                                    <td class='set_position'>Expired data</td>
+                                    <td class='set_position'><span t-field='o.expired_date'/></td>
+                                </tr>
+                                 <!-- <tr>
+                                    <td>Purchasing price</td>
+                                    <td><span t-field='o.manufauctuer'/></td>
+                                    <td>Expired data</td>
+                                    <td><span t-field='o.expired_date'/></td>
+                                </tr> -->
+                            </tbody>
+                        </table>  
+                        <br/>
+                        <h5>Description : </h5>
+                        <div><span t-field='o.Medicine_description'/> </div>
+                        <br/>
+                        <h5>Notes : </h5>
+                        <div><span t-field='o.notes'/> </div>
+                        <t t-if='o.is_damaged'>
+                            <div>Notes : </div>
+                            <div><span t-field='o.notes'/> </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- <record id='medicine_print' model='ir.actions.report'>
+        <field name='name'>Medicine Report</field>
+        <field name='model'>product.template</field>
+        <field name='report_type'>qweb-pdf</field>
+        <field name='report_name'>trial.medicin_report</field>
+    </record> -->
+
+    <report 
+        id='medicine_report'
+        string='Medicine Details'
+        model='product.template'
+        report_type='qweb-pdf'
+        name='trial.medicin_report'/>
+
+</odoo>
+
+
